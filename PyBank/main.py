@@ -1,63 +1,68 @@
 import os
-#csvpath = os.path.join('..', 'Resources', 'budget_data.csv')
-csvpath = "C://Users//matth//OneDrive//Desktop//Data Analytics Class//Module 3 - Python//Challenge//PyBank//Resources//budget_data.csv"
-
 import csv
-
+import sys
 from statistics import mean
 
-###################To output to file############ (https://stackoverflow.com/questions/25023233/how-to-save-python-screen-output-to-a-text-file)
+# Define the path to your CSV file
+csvpath = os.path.join('..', 'Resources', 'budget_data.csv')
 
-import sys 
+# I used a full path (below) to get this code to work on my computer. 
+# csvpath = "C://Users//matth//OneDrive//Desktop//Data Analytics Class//Module 3 - Python//Challenge//PyBank//Resources//budget_data.csv" 
 
-stdoutOrigin=sys.stdout 
-sys.stdout = open("pybank.txt", "w")
+# Redirect output to a text file named "pybank.txt"
+output_file = "pybank.txt"
+output_path = os.path.join(os.getcwd(), output_file)
 
-##########################################################################################################################
+# Open the output file for writing
+with open(output_path, "w") as f_out:
+    
+    # Open the CSV file for reading
+    with open(csvpath) as csvfile:
+        csvreader = csv.reader(csvfile, delimiter=',')
 
-with open(csvpath) as csvfile:
+        # Skip header
+        headers = next(csvreader)
 
-  csvreader = csv.reader(csvfile, delimiter=',')
-  headers = next(csvreader) 
+        # Create lists for date and profit/losses
+        date = []
+        profit_losses = []
 
-  date = [row[0] for row in csvreader]
-  months = [row[0].split("-")[0] for row in csvreader]
-  total_months = (len(months))
-  print ('Financial Analysis')
-  print('----------------------------')
-  print('Total Months: ' + str(total_months))
+        # Read data from CSV and populate lists
+        for row in csvreader:
+            date.append(row[0])
+            profit_losses.append(int(row[1]))
 
-  # The net total amount of "Profit/Losses" over the entire period
+        # Total number of months
+        total_months = len(date)
+        print('Financial Analysis')
+        print('----------------------------')
+        print(f'Total Months: {total_months}')
+        print(f'Total: ${sum(profit_losses)}')
 
-with open(csvpath) as csvfile:
+        print('Financial Analysis', file=f_out)
+        print('----------------------------', file=f_out)
+        print(f'Total Months: {total_months}', file=f_out)
+        print(f'Total: ${sum(profit_losses)}', file=f_out)
 
-  csvreader = csv.reader(csvfile, delimiter=',')
-  headers = next(csvreader) 
+        # Calculate changes in profit/losses
+        changes = [profit_losses[i+1] - profit_losses[i] for i in range(len(profit_losses) - 1)]
+        average_change = mean(changes)
+        print(f'Average Change: ${round(average_change, 2)}')
+        print(f'Average Change: ${round(average_change, 2)}', file=f_out)
 
-  profit_losses_strings = [row[1] for row in csvreader]
-  profit_losses = [int(num) for num in profit_losses_strings]
-  net_total = sum(profit_losses)
-  print(f"Total: ${net_total}")
+        # Find greatest increase and decrease in profits
+        max_increase = max(changes)
+        max_increase_index = changes.index(max_increase) + 1
+        max_increase_date = date[max_increase_index]
+        print(f'Greatest Increase in Profits: {max_increase_date} (${max_increase})')
+        print(f'Greatest Increase in Profits: {max_increase_date} (${max_increase})', file=f_out)
 
-# #The changes in "Profit/Losses" over the entire period, and then the average of those changes
+        max_decrease = min(changes)
+        max_decrease_index = changes.index(max_decrease) + 1
+        max_decrease_date = date[max_decrease_index]
+        print(f'Greatest Decrease in Profits: {max_decrease_date} (${max_decrease})')
+        print(f'Greatest Decrease in Profits: {max_decrease_date} (${max_decrease})', file=f_out)
 
-  diff = [profit_losses[i+1]-profit_losses[i] for i in range(len(profit_losses)-1)] #https://stackoverflow.com/questions/2400840/python-finding-differences-between-elements-of-a-list
-  av_change = mean(diff)
 
-print(f"Average Change: ${round(av_change)}")
-# #The greatest increase in profits (date and amount) over the entire period
-g_increase = max(diff)
-max_date_index = (diff.index(max(diff)) + 1)
-increase_date = date[max_date_index]    
-print(f"Greatest Increase in Profits: {increase_date} ${g_increase}")
 
-# #The greatest decrease in profits (date and amount) over the entire period
-g_decrease = min(diff)
-min_date_index = (diff.index(min(diff)) + 1)
-decrease_date = date[min_date_index]
-print(f"Greatest Decrease in Profits: {decrease_date} ${g_decrease}")
 
-############To print############
-
-sys.stdout.close()
-sys.stdout=stdoutOrigin
