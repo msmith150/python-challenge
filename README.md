@@ -36,20 +36,24 @@ Both scripts output the results to the terminal and save the analysis to a text 
 ## How to Run
 
 1. Clone the repository:
-    ```bash git clone https://github.com/msmith150/python-challenge.git
-
+```bash 
+git clone https://github.com/msmith150/python-challenge.git
+```
 2. Navigate to the PyBank or PyPoll directory:
-    ```bash cd python-challenge/PyBank  # or cd python-challenge/PyPoll
+```bash 
+cd python-challenge/PyBank  # or cd python-challenge/PyPoll
+```
 
 3. Run the main.py script:
-    ```bash python main.py
-
+```bash 
+python main.py
+```
 4. The results will be printed to the terminal and saved in the analysis folder as a .txt file (pybank.txt or pypoll.txt).
 
 ## Example Output
 
 ### PyBank
-
+```yaml
 Financial Analysis
 ----------------------------
 Total Months: 86
@@ -57,9 +61,9 @@ Total: $22564198
 Average Change: $-8311.11
 Greatest Increase in Profits: Aug-16 ($1862002)
 Greatest Decrease in Profits: Feb-14 ($-1825558)
-
+```
 ### PyPoll
-
+```yaml
 Election Results
 -------------------------
 Total Votes: 369711
@@ -70,7 +74,7 @@ Raymon Anthony Doane: 3.139% (11606)
 -------------------------
 Winner: Diana DeGette
 -------------------------
-
+```
 ## Notes
 
 The CSV files (budget_data.csv and election_data.csv) should be placed in the Resources folder for each challenge.
