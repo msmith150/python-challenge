@@ -20,23 +20,23 @@ In the PyPoll challenge, the goal is to analyze voting data from a small rural t
 Both scripts output the results to the terminal and save the analysis to a text file for each respective challenge.
 
 ## Project Structure
+```css
+python-challenge/
+├── PyBank/
+│   ├── Resources/
+│   │   └── budget_data.csv
+│   ├── analysis/
+│   │   └── pybank.txt
+│   ├── main.py
+├── PyPoll/
+│   ├── Resources/
+│   │   └── election_data.csv
+│   ├── analysis/
+│   │   └── pypoll.txt
+│   ├── main.py
+└── README.md
+```
 
- python-challenge/ 
- ├── PyBank/ │ 
- ├── Resources/ │ 
- │ └── budget_data.csv │ 
- ├── analysis/ │ 
- │ └── pybank.txt │ 
- ├── main.py 
- ├── PyPoll/ │ 
- ├── Resources/ │ 
- │ └── election_data.csv │ 
- ├── analysis/ │ 
- │ └── pypoll.txt │ 
- ├── main.py 
- └── README.md
-
- 
 - `main.py` for each challenge contains the script for performing the analysis.
 - The `Resources` folders contain the datasets required for each task.
 - The `analysis` folders contain the output text files with the results.
