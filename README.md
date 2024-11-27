@@ -36,16 +36,13 @@ Both scripts output the results to the terminal and save the analysis to a text 
 ## How to Run
 
 1. Clone the repository:
-    ```bash
-git clone https://github.com/yourusername/python-challenge.git
+    ```bash git clone https://github.com/msmith150/python-challenge.git
 
 2. Navigate to the PyBank or PyPoll directory:
-    ```bash
-cd python-challenge/PyBank  # or cd python-challenge/PyPoll
+    ```bash cd python-challenge/PyBank  # or cd python-challenge/PyPoll
 
 3. Run the main.py script:
-    ```bash
-python main.py
+    ```bash python main.py
 
 4. The results will be printed to the terminal and saved in the analysis folder as a .txt file (pybank.txt or pypoll.txt).
 
